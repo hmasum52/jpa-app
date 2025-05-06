@@ -33,6 +33,11 @@ public class TodoController {
     return todoService.getAllTodos();
   }
 
+  @GetMapping("/pending")
+  public List<Todo> getPendingTodos() {
+    return todoService.getPendingTodos();
+  }
+
   @GetMapping("/{id}")
   public Todo getTodoById(@PathVariable Long id) {
     return todoService.getTodoById(id);
@@ -46,6 +51,11 @@ public class TodoController {
   @DeleteMapping("/{id}")
   public void deleteTodo(@PathVariable Long id) {
     todoService.deleteTodo(id);
+  }
+
+  @GetMapping("/search/{description}")
+  public List<Todo> searchByDescription(@PathVariable String description) {
+    return todoService.searchByDescription(description);
   }
 
 

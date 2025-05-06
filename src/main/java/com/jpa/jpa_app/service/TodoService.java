@@ -45,4 +45,12 @@ public class TodoService {
     Todo todo = getTodoById(id);
     todoRepository.delete(todo);
   }
+
+  public List<Todo> getPendingTodos(){
+    return todoRepository.findByCompletedFalse();
+  }
+
+  public List<Todo> searchByDescription(String description) {
+    return todoRepository.searchByDescription(description);
+  }
 }
