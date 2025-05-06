@@ -1,0 +1,24 @@
+# docker compose up -d
+
+name: jpa
+
+services:
+  postgres:
+    container_name: jpa_postgres
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=jpa
+    volumes:
+      - ${VOLUME_PATH:-postgres-data}:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes: 
+  postgres-data:
